@@ -1,14 +1,47 @@
 import numpy as np
-salary = np.random.normal(15000,1000,500)	#This salary is a numpy array with gaussian (or normal) distribution
-import matplotlib.pyplot as plt				#The mean is about 15000 , standard deviation is about 1000 , and number of people(or samples) is 500
+import matplotlib.pyplot as plt				
+from matplotlib import style # for style of graph
 
-plt.xlabel("Employees")
-plt.ylabel("Salary")
-plt.title("Employee-Salary Plot")
-plt.plot(list(range(1,501)),salary , marker = 'o')
+
+style.use("ggplot")  #ggplot = grid background in our graph
+plt.grid(color = 'c' , linestyle = "-.")  #color of grid lines = "cyan" and linesstyle = dotted lines in grid
+
+days = [1,2,3,4,5,6,7,8,9,10]
+temperature = np.random.normal(30,5,10)
+
+plt.xlabel("Days")
+plt.ylabel("Temperature")
+plt.title("Daywise Temperature Plot")
+plt.plot(days,temperature , color = 'g' , marker = 'o' , linestyle = '--' , linewidth = 3 , markersize = 10)
+# OR 
+#plt.plot(days,temperature, "o--" , linewidth = 3 , markersize = 10  ) # o-- = " o , dashed" in shortform. No color is explicitly defined by us , so bydefault blue color is selected by matplotlib
+
 plt.show()	#Prints a line graph
 
+#Now lets plot two line graphs in one graph
+
+IndianTemp = np.random.normal(35,10,10)
+MPtemp = np.random.normal(30,5,10)
+
+style.use("ggplot")  #ggplot = grid background in our graph
+plt.grid(color = 'c' , linestyle = "-.")  #color of grid lines = "cyan" and linesstyle = dotted lines in grid
+
+plt.plot(days,temperature, "o--" , linewidth = 3 , markersize = 10 , label = "MadhyaPradesh"  ) # Instead of giving the label name of graph in plt.legend , we can mention it here also as label = "Temp line" 
+plt.plot(days,IndianTemp,"go-",label = "India")
+
+plt.title("Daily Summer Temperatures Madhya Pradesh" , fontsize = 15)
+plt.xlabel("Days" , fontsize = 15)
+plt.ylabel("Temperature" , fontsize = 15)
+plt.legend(loc = 4)  
+
+plt.xticks(list(range(0,10))) # or plt.xticks(np.arange(0,10)) will also do the same : xticks are used to set the values of x axis
+plt.yticks(np.arange(0,41,10)) # yticks are used to set the values of y axis
+
+plt.show()
+
 ###############################################################
+
+#Lets plot a Histogram
 
 Py_students = np.random.randint(15,50,(100))	#Generate 100 random  values between 15 to 50
 ML_students = np.random.randint(18,45,(100))	#Generate 100 random  values between 18 to 45
